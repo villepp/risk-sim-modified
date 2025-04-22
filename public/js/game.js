@@ -203,6 +203,38 @@ function nextTurn() {
         updateProjectStatus();
         updateCharts();
         checkWinCondition();
+		saveTurn();
+    }
+}
+
+function redoTurn() {
+    if (gameOver) return;
+
+    if (currentTurn > project.duration) {
+        checkWinCondition();
+        return;
+    }
+
+    project.budget -= project.baselineCostPerTurn;
+    var riskEvent = currentRiskEvent;
+    if (riskEvent) {
+        document.getElementById('riskEvent').classList.remove('hidden');
+        document.getElementById('riskEventDescription').innerHTML = `
+            <p>Risk "<strong>${riskEvent.name}</strong>" has occurred!</p>
+            <p>Type: ${riskEvent.type}</p>
+            <p>Likelihood: ${riskEvent.likelihood}</p>
+            <p>Impact: ${riskEvent.impact}</p>
+            <p>Minimum Cost if Occurs: €${riskEvent.minCost.toLocaleString()}</p>
+            <p>Cost as % of Budget: ${riskEvent.costPercentage}%</p>
+            <p>Risk Response Description: ${riskEvent.responseDescription}</p>
+        `;
+        document.getElementById('nextTurnButton').disabled = true;
+        currentRiskEvent = riskEvent;
+    } else {
+        updateProjectStatus();
+        updateCharts();
+        checkWinCondition();
+		saveTurn();
     }
 }
 
@@ -279,6 +311,7 @@ function respondToRisk() {
     updateProjectStatus();
     updateCharts();
     checkWinCondition();
+	saveTurn();
 }
 
 function updateProjectStatus() {
