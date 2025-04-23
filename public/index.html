@@ -117,6 +117,15 @@
             <button class="button-action" onclick="respondToRisk()">Respond</button>
         </div>
 
+        <div id="endGamePrompt" class="hidden">
+            <h3>Project Duration Reached</h3>
+            <p>You have reached the end of your planned project duration. Would you like to end the project now?</p>
+            <div class="button-container">
+                <button class="button-action" onclick="endGame(true)">Yes, End Project</button>
+                <button class="button-action" onclick="hideEndGamePrompt()">No, Continue</button>
+            </div>
+        </div>
+
         <div class="button-container">
             <button id="nextTurnButton" class="button-action" onclick="nextTurn()">Next Turn</button>
             <button class="button-action" onclick="exportCurrentState()">Export Current State</button>
@@ -148,6 +157,14 @@
             <canvas id="budgetChart" width="400" height="200"></canvas>
             <canvas id="qualityChart" width="400" height="200"></canvas>
         </div>
+        <div id="endGamePrompt" class="hidden">
+    <h3>Project Duration Reached</h3>
+    <p>You have reached the end of your planned project duration. Would you like to end the project now?</p>
+    <div class="button-container">
+        <button class="button-action" onclick="endGame(true)">Yes, End Project</button>
+        <button class="button-action" onclick="hideEndGamePrompt()">No, Continue</button>
+    </div>
+</div>
     </div>
 
     <div id="gameStatus"></div>
@@ -252,6 +269,10 @@
     <script src="js/risk.js"></script>
     <script src="js/export.js"></script>
     <script src="js/modal.js"></script>
-	<script src="js/savestate.js"></script>
+    <script src="js/savestate.js"></script>
+    <!-- New script imports -->
+    <script src="js/points-rewards.js"></script>
+    <script src="js/grading.js"></script>
+    <script src="js/activity-log.js"></script>
 </body>
-</html> 
+</html>

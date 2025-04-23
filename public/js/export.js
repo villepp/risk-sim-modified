@@ -65,9 +65,30 @@ function exportCurrentState() {
         var ws = XLSX.utils.aoa_to_sheet(historyData);
         XLSX.utils.book_append_sheet(wb, ws, "Game History");
     }
+    
+    // Export Activity Log
+    if (typeof getLogForExport === "function" && getLogForExport()) {
+        var logData = getLogForExport();
+        var ws = XLSX.utils.aoa_to_sheet(logData);
+        XLSX.utils.book_append_sheet(wb, ws, "Activity Log");
+    }
+
+    // Export Grading Data if game is over
+    if (gameOver && typeof exportGradeData === "function") {
+        var gradeData = exportGradeData();
+        if (gradeData) {
+            var ws = XLSX.utils.aoa_to_sheet(gradeData);
+            XLSX.utils.book_append_sheet(wb, ws, "Grading");
+        }
+    }
 
     // Save the workbook
     XLSX.writeFile(wb, "risk_simulation_" + timestamp + ".xlsx");
+    
+    // Log export action
+    if (typeof logAction === "function") {
+        logAction("Exported project state to Excel");
+    }
 }
 
 // Keep the original exportRiskRegister function for backward compatibility
@@ -100,4 +121,9 @@ function exportRiskRegister() {
     XLSX.utils.book_append_sheet(wb, ws, "Risk Register");
     var timestamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
     XLSX.writeFile(wb, "risk_register_" + timestamp + ".xlsx");
-} 
+    
+    // Log export action
+    if (typeof logAction === "function") {
+        logAction("Exported risk register to Excel");
+    }
+}

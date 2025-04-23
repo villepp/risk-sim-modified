@@ -285,6 +285,302 @@ tr:last-child td {
     border-radius: var(--radius-sm);
 }
 
+/* Points and Achievements System Styles - Updated for less intrusive display */
+.points-container {
+    background-color: var(--card-bg);
+    padding: 0.5rem 0.75rem; /* Reduced padding */
+    margin-bottom: 0.5rem; /* Reduced margin */
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.points-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pointsDisplay {
+    font-weight: 600;
+    font-size: 1rem; /* Smaller font */
+    color: var(--primary-color);
+}
+
+/* Make the achievements button less prominent */
+#achievementsButton {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Points notification styles kept but not used in the new implementation */
+.points-notification {
+    display: none; /* Hide notifications */
+}
+
+.points-notification.hidden {
+    display: none;
+}
+
+.achievements-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    max-height: 80vh;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.achievements-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -60%);
+}
+
+.achievements-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.achievement-item {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+.achievement-item.locked {
+    opacity: 0.6;
+    border-left-color: var(--text-light);
+}
+
+.achievement-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.achievement-description {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.achievement-points {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+/* Grading System Styles */
+.grade-display {
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-top: 2rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.final-grade {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.grade-letter {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.grade-breakdown {
+    margin-top: 1rem;
+}
+
+.grade-criteria {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.criteria-name {
+    width: 40%;
+    font-weight: 500;
+}
+
+.criteria-score-container {
+    flex-grow: 1;
+    height: 10px;
+    background-color: var(--border-color);
+    border-radius: 5px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.criteria-score-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.criteria-score-value {
+    width: 50px;
+    text-align: right;
+    font-weight: 500;
+}
+
+.criteria-weighted {
+    width: 100px;
+    text-align: right;
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+/* Activity Log Styles */
+.log-button {
+    background-color: var(--warning-color);
+}
+
+.log-button:hover {
+    background-color: var(--warning-hover);
+}
+
+.log-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.log-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -60%);
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.log-entries {
+    padding: 1rem 1.5rem;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.log-turn-group {
+    margin-bottom: 1rem;
+}
+
+.log-turn-group h4 {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.log-entry {
+    display: flex;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.log-time {
+    color: var(--text-light);
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.log-action {
+    flex-grow: 1;
+}
+
+.points-summary {
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-top: 1.5rem;
+    border-left: 4px solid #8b5cf6;
+}
+
+.total-points {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.achievements-summary {
+    margin-top: 1rem;
+}
+
+.achieved-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.final-score {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.results-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+#endGamePrompt {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--warning-color);
+    animation: fade-in 0.3s ease-in-out;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 768px) {
     body {
         padding: 1rem;
@@ -306,4 +602,22 @@ tr:last-child td {
     .button-container {
         flex-direction: column;
     }
-} 
+    
+    .results-actions {
+        flex-direction: column;
+    }
+    
+    .grade-criteria {
+        flex-wrap: wrap;
+    }
+    
+    .criteria-name {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .criteria-weighted {
+        width: auto;
+        margin-left: 1rem;
+    }
+}

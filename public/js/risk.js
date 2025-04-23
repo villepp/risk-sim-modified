@@ -39,6 +39,12 @@ function addRisk() {
     document.getElementById('minCost').value = "5000";
     document.getElementById('costPercentage').value = "5";
     document.getElementById('riskResponseDescription').value = "";
+    
+    // Log and award points for adding a risk
+    logAction(`Added risk: ${risk.name} (${risk.type})`);
+    if (typeof awardPoints === "function") {
+        awardPoints(5, "Added risk to register");
+    }
 }
 
 function getRiskLevel(score) {
@@ -126,4 +132,4 @@ function getResponseExplanation(response) {
         default:
             return "";
     }
-} 
+}
